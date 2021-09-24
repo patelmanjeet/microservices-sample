@@ -43,7 +43,7 @@ spec:
     stage('Build') {
       steps {
         container('maven') {
-          sh 'mvn clean package -DskipTests'
+          sh 'mvn clean install -DskipTests'
         }
       }
     }

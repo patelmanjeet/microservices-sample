@@ -9,7 +9,7 @@ spec:
     - name: maven
       image: maven:3.6.3-jdk-11
       command:
-      - cat
+        - cat
       tty: true
       volumeMounts:
         - name: m2
@@ -17,11 +17,16 @@ spec:
     - name: docker
       image: docker:latest
       command:
-      - cat
+        - cat
       tty: true
       volumeMounts:
         - name: docker
           mountPath: /var/run/docker.sock
+    - name: helm
+      image: alpine/helm:3.6.3
+      command:
+        - cat
+      tty: true
   volumes:
     - name: m2
       hostPath:

@@ -27,7 +27,7 @@ spec:
     - http:
         paths:
           {{- range .paths }}
-          - path: {{ .path }}
+          - path: {{ .pathPrefix }}{{ .Release.Name }}
             pathType: {{ .pathType }}
             backend:
               service:

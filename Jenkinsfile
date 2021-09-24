@@ -13,7 +13,7 @@ spec:
   # Use service account that can deploy to all namespaces
   containers:
     - name: maven
-      image: maven:latest
+      image: maven:3.6.3-jdk-11
       command:
       - cat
       tty: true

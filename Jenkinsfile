@@ -12,7 +12,6 @@ pipeline {
         }
     }
 
-
     environment {
         IMAGE_TAG = "${env.GIT_COMMIT}"
         DOCKER_REGISTRY = "eproc"

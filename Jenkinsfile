@@ -3,7 +3,7 @@ pipeline {
     kubernetes {
       //label 'default-ci'
       defaultContainer 'jnlp'
-      yamlFile "jenkins-agent-pod.yaml"
+      yamlFile "deployment/jenkins-agent-pod.yaml"
     }
 }
   stages {

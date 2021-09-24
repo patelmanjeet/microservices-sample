@@ -17,6 +17,9 @@ spec:
       command:
       - cat
       tty: true
+      volumeMounts:
+        - name: m2
+          mountPath: /root/.m2/repository
     - name: docker
       image: docker:latest
       command:
@@ -26,6 +29,10 @@ spec:
         - name: docker
           mountPath: /var/run/docker.sock
   volumes:
+    - name: m2
+      hostPath:
+        path: /root/.m2/repository
+        type: DirectoryOrCreate
     - name: docker
       hostPath:
         path: /var/run/docker.sock

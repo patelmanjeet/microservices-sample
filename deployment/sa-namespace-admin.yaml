@@ -1,0 +1,33 @@
+# deploy-service-account.yml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: deploy
+  namespace: default
+
+
+# deploy-role-and-rolebinding-target.yml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: deploy-admin
+  namespace: default # Should be namespace you are granting access to
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: deploy-admin
+  namespace: default # Should be namespace you are granting access to
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: deploy-admin # Should match name of Role
+subjects:
+- namespace: default # Should match namespace where SA lives
+  kind: ServiceAccount
+  name: deploy # Should match service account name, above

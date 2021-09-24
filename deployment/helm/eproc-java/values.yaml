@@ -47,7 +47,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     #- host: chart-example.local
-    - host: *
+    - host: chart-example.local
       paths:
       - path: /
         backend:

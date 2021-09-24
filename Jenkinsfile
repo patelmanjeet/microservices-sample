@@ -4,8 +4,8 @@ pipeline {
       //label 'default-ci'
       defaultContainer 'jnlp'
       yamlFile "jenkins-agent-pod.yaml"
+    }
 }
-   }
   stages {
     stage('Build') {
       steps {

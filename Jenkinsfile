@@ -12,6 +12,11 @@ labels:
 spec:
   # Use service account that can deploy to all namespaces
   containers:
+    - name: maven
+      image: maven:latest
+      command:
+      - cat
+      tty: true
     - name: docker
       image: docker:latest
       command:
@@ -20,11 +25,6 @@ spec:
       volumeMounts:
         - name: docker
           mountPath: /var/run/docker.sock
-    - name: maven
-      image: maven:latest
-      command:
-      - cat
-      tty: true
   volumes:
     - name: docker
       hostPath:
@@ -36,7 +36,15 @@ spec:
     stage('Build') {
       steps {
         container('maven') {
-          sh """mvn -v """
+          sh 'mvn clean package -DskipTests'
+        }
+      }
+    }
+
+    stage('Test') {
+      steps {
+        container('maven') {
+          sh 'mvn test'
         }
       }
     }

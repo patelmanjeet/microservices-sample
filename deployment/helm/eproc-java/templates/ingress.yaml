@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "eproc-java.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $releaseName := .Release.Name  -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -27,7 +28,7 @@ spec:
     - http:
         paths:
           {{- range .paths }}
-          - path: {{ .pathPrefix }}{{ .Release.Name }}
+          - path: {{ .pathPrefix }}{{ $releaseName }}
             pathType: {{ .pathType }}
             backend:
               service:
